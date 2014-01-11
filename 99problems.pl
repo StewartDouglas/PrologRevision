@@ -148,12 +148,3 @@ slice([H|T],1,M,[H|Output]) :- M > 0,
 	                       M1 is M-1,
 			       slice(T,1,M1,Output).
 
-
-
-
-
-
-%Q14
-
-dupli([],[]).
-dupli([H|T],[H,H|T2]) :- dupli(T,T2).
