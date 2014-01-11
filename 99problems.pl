@@ -108,6 +108,48 @@ uncompress([[N,X]|Xs],[X|Zs]) :- N > 0,
 	                         uncompress([[M,X]|Xs],Zs).
 uncompress([[0,X]|Xs],Zs) :- uncompress(Xs,Zs).
 
-%Q13
+%Q14
+
+duplicate([],[]).
+duplicate([H|T],[H,H|T2]) :- duplicate(T,T2).
+
+%Q15
+
+dupli(L1,N,L2) :- dupli(L1,N,L2,N).
+
+dupli([],_,[],_).
+dupli([_|Xs],N,Ys,0) :- dupli(Xs,N,Ys,N).
+dupli([X|Xs],N,[X|Ys],K) :- K > 0, K1 is K - 1, dupli([X|Xs],N,Ys,K1).
+
+%Q16
+
+drop(X,N,Y) :- drop(X,N,Y,N).
+
+drop([],_,[],_).
+drop([_|Xs],N,Ys,1) :- drop(Xs,N,Ys,N).
+drop([X|Xs],N,[X|Ys],K) :- K > 1, K1 is K - 1, drop(Xs,N,Ys,K1).
+
+%Q17
+
+split([],_,[],[]).
+split([H|T],N,[H|L1],L2) :- N > 0,
+	                    M is N-1,
+			    split(T,M,L1,L2).
+split([H|T],0,L1,[H|L2]) :- split(T,0,L1,L2).
+
+%Q18
+
+slice(_,1,0,[]).
+slice([H|T],N,M,Output) :- N > 1,
+	                   N1 is N-1,
+                           M1 is M-1,
+			   slice(T,N1,M1,Output).
+slice([H|T],1,M,[H|Output]) :- M > 0,
+	                       M1 is M-1,
+			       slice(T,1,M1,Output).
+
+
+
+
 
 
