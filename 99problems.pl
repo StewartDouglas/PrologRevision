@@ -153,3 +153,7 @@ slice([H|T],1,M,[H|Output]) :- M > 0,
 
 
 
+%Q14
+
+dupli([],[]).
+dupli([H|T],[H,H|T2]) :- dupli(T,T2).
